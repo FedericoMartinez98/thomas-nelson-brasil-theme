@@ -1,0 +1,122 @@
+{%- assign current = product.selected_or_first_available_variant -%}
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <div class="pdp" data-product>
+      <div class="pdp__gallery" data-gallery>
+        <div class="pdp__stage">
+          {% render 'product-badges', product: product %}
+          {%- for media in product.images -%}
+            <div class="pdp__slide{% if forloop.first %} is-on{% endif %}" data-gallery-slide="{{ forloop.index0 }}">
+              {%- if forloop.first -%}{%- assign l = 'eager' -%}{%- else -%}{%- assign l = 'lazy' -%}{%- endif -%}
+              {{ media | image_url: width: 900 | image_tag: loading: l, alt: product.title, widths: '450, 700, 900, 1200', sizes: '(min-width: 990px) 45vw, 90vw' }}
+            </div>
+          {%- else -%}
+            <div class="pdp__slide is-on">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+          {%- endfor -%}
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="pdp__thumbs">
+            {%- for media in product.images -%}
+              <button type="button" class="{% if forloop.first %}is-on{% endif %}" data-gallery-thumb="{{ forloop.index0 }}" aria-label="Imagem {{ forloop.index }}">{{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="pdp__info">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'title' -%}
+              <div {{ block.shopify_attributes }}>
+                <a class="pdp__vendor" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+                <h1 class="pdp__title">{{ product.title }}</h1>
+              </div>
+            {%- when 'price' -%}
+              <div {{ block.shopify_attributes }} data-price-wrap>{% render 'price', product: product, variant: current, show_installments: true, show_pix: true, size: 'lg' %}</div>
+            {%- when 'buy' -%}
+              <div class="pdp__buy" {{ block.shopify_attributes }}>
+                {%- form 'product', product, id: 'product-form', class: 'pdp__form' -%}
+                  {%- unless product.has_only_default_variant -%}
+                    {%- for option in product.options_with_values -%}
+                      <fieldset class="variant-pills">
+                        <legend>{{ option.name }}: <b data-option-label="{{ forloop.index0 }}">{{ option.selected_value }}</b></legend>
+                        {%- for value in option.values -%}
+                          <label><input type="radio" name="option{{ forloop.parentloop.index }}" value="{{ value | escape }}" data-option-index="{{ forloop.parentloop.index0 }}" {% if option.selected_value == value %}checked{% endif %}><span>{{ value }}</span></label>
+                        {%- endfor -%}
+                      </fieldset>
+                    {%- endfor -%}
+                  {%- endunless -%}
+                  <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
+                  <div class="pdp__actions">
+                    {% render 'quantity-input', id: 'pdp-qty' %}
+                    <button class="btn btn--primary btn--lg" type="submit" name="add" data-add {% unless current.available %}disabled{% endunless %}>
+                      {% render 'icon', name: 'cart', size: 20 %} <span data-add-label>{% if current.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</span>
+                    </button>
+                  </div>
+                  {%- if block.settings.show_buy_now -%}{{ form | payment_button }}{%- endif -%}
+                {%- endform -%}
+                <script type="application/json" data-variants>{{ product.variants | json }}</script>
+              </div>
+            {%- when 'shipping' -%}
+              <div class="pdp__ship" {{ block.shopify_attributes }}>
+                <p class="pdp__ship-title">{% render 'icon', name: 'truck', size: 20 %} {{ 'products.shipping_calc' | t }}</p>
+                <form class="pdp__zip" onsubmit="event.preventDefault();this.nextElementSibling.hidden=false">
+                  <input type="text" inputmode="numeric" maxlength="9" placeholder="{{ 'products.zip' | t }}" aria-label="CEP"><button class="btn btn--ghost" type="submit">OK</button>
+                </form>
+                <p class="muted small" hidden>As opções e prazos aparecem no checkout para o seu CEP.</p>
+                <a class="small" href="https://buscacepinter.correios.com.br/" target="_blank" rel="noopener">Não sei meu CEP</a>
+              </div>
+            {%- when 'perks' -%}
+              <ul class="pdp__perks" {{ block.shopify_attributes }}>
+                <li>{% render 'icon', name: 'truck', size: 20 %} Frete grátis acima de {{ settings.free_shipping_threshold | times: 100 | money }}</li>
+                <li>{% render 'icon', name: 'refresh', size: 20 %} Troca grátis em até 7 dias</li>
+                <li>{% render 'icon', name: 'shield', size: 20 %} Compra 100% segura</li>
+              </ul>
+            {%- when 'details' -%}
+              <div class="accordion" {{ block.shopify_attributes }}>
+                <details open><summary>{{ 'products.description' | t }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary><div class="rte">{{ product.description }}</div></details>
+                <details><summary>{{ 'products.details' | t }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary>
+                  <dl class="specs">
+                    {%- if current.sku != blank -%}<dt>{{ 'products.isbn' | t }}</dt><dd data-sku>{{ current.sku }}</dd>{%- endif -%}
+                    <dt>{{ 'products.publisher' | t }}</dt><dd>Thomas Nelson Brasil</dd>
+                    {%- if current.title != 'Default Title' -%}<dt>{{ 'products.binding' | t }}</dt><dd>{{ current.title }}</dd>{%- endif -%}
+                    {%- if product.metafields.book.pages != blank -%}<dt>{{ 'products.pages' | t }}</dt><dd>{{ product.metafields.book.pages }}</dd>{%- endif -%}
+                    {%- if product.metafields.book.release_date != blank -%}<dt>{{ 'products.release' | t }}</dt><dd>{{ product.metafields.book.release_date | date: '%d/%m/%Y' }}</dd>{%- endif -%}
+                  </dl>
+                </details>
+                <details><summary>{{ 'products.shipping' | t }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary><div class="rte">{{ block.settings.shipping_text }}</div></details>
+              </div>
+            {%- when 'share' -%}
+              <div class="pdp__share" {{ block.shopify_attributes }}>
+                <span>{{ 'products.share' | t }}:</span>
+                <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">{% render 'icon', name: 'whatsapp', size: 20 %}</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'icon', name: 'facebook', size: 20 %}</a>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  <div class="sticky-buy" data-sticky-buy>
+    <div class="wrap sticky-buy__inner">
+      <span class="sticky-buy__title">{{ product.title | truncate: 48 }}</span>
+      <span class="sticky-buy__price">{{ current.price | money }}</span>
+      <button class="btn btn--primary" type="submit" form="product-form" {% unless current.available %}disabled{% endunless %}>{{ 'products.add_to_cart' | t }}</button>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Book","name":{{ product.title | json }},"author":{"@type":"Person","name":{{ product.vendor | json }}},"isbn":{{ current.sku | json }},"image":{{ product.featured_image | image_url: width: 900 | prepend: 'https:' | json }},"offers":{"@type":"Offer","priceCurrency":"BRL","price":{{ current.price | divided_by: 100.0 | json }},"availability":"https://schema.org/{% if current.available %}InStock{% else %}OutOfStock{% endif %}"}}
+</script>
+{% schema %}
+{"name":"Produto","settings":[],
+"blocks":[
+ {"type":"title","name":"Título e autor","limit":1},
+ {"type":"price","name":"Preço","limit":1},
+ {"type":"buy","name":"Formato e compra","limit":1,"settings":[{"type":"checkbox","id":"show_buy_now","label":"Botão Comprar agora","default":true}]},
+ {"type":"shipping","name":"Calcular frete","limit":1},
+ {"type":"perks","name":"Vantagens","limit":1},
+ {"type":"details","name":"Descrição e detalhes","limit":1,"settings":[{"type":"richtext","id":"shipping_text","label":"Texto entrega e trocas","default":"<p>Enviamos para todo o Brasil. Você pode trocar ou devolver em até 7 dias após o recebimento.</p>"}]},
+ {"type":"share","name":"Compartilhar","limit":1}]}
+{% endschema %}

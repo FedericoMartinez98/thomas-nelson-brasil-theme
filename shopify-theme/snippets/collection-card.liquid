@@ -1,0 +1,15 @@
+{%- comment -%} Usage: {% render 'collection-card', collection: collection, image: image %} {%- endcomment -%}
+{%- liquid
+  assign img = image
+  if img == blank
+    assign img = collection.image
+  endif
+  if img == blank
+    assign img = collection.products.first.featured_image
+  endif
+-%}
+<a class="coll-card" href="{{ collection.url }}">
+  <span class="coll-card__media">{%- if img -%}{{ img | image_url: width: 360 | image_tag: loading: 'lazy', alt: collection.title }}{%- else -%}{{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}</span>
+  <span class="coll-card__title">{{ title | default: collection.title }}</span>
+  {%- if subtitle != blank -%}<span class="coll-card__sub">{{ subtitle }}</span>{%- endif -%}
+</a>

@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article"
+    },
+    "suggest": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Leituras recomendadas",
+        "heading": "Devocionais",
+        "collection": "devocional",
+        "tinted": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "suggest"
+  ]
+}

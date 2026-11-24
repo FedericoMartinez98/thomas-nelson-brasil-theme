@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="wrap auth">
+    <div class="card-box">
+      <h1 class="h2">{{ 'customer.register' | t }}</h1>
+      {%- form 'create_customer', class: 'form' -%}
+        {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+        <div class="form__row">
+          <label>{{ 'customer.first_name' | t }}<input type="text" name="customer[first_name]" autocomplete="given-name"></label>
+          <label>{{ 'customer.last_name' | t }}<input type="text" name="customer[last_name]" autocomplete="family-name"></label>
+        </div>
+        <label>{{ 'customer.email' | t }}<input type="email" name="customer[email]" autocomplete="email" required></label>
+        <label>{{ 'customer.password' | t }}<input type="password" name="customer[password]" autocomplete="new-password" required></label>
+        <label class="check"><input type="checkbox" name="customer[accepts_marketing]" checked> Quero receber novidades e cupons por e-mail</label>
+        <button class="btn btn--primary btn--block" type="submit">{{ 'customer.register' | t }}</button>
+      {%- endform -%}
+      <p class="center muted">{{ 'customer.have_account' | t }} <a href="{{ routes.account_login_url }}">{{ 'customer.login' | t }}</a></p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Cadastro","settings":[]}
+{% endschema %}

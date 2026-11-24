@@ -1,0 +1,9 @@
+{%- comment -%} Store logo: uploaded image or wordmark fallback. {%- endcomment -%}
+<a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+  {%- if settings.logo != blank -%}
+    {{ settings.logo | image_url: width: 640 | image_tag: alt: shop.name, style: 'width:var(--logo-w);height:auto' }}
+  {%- else -%}
+    <span class="logo__mark">{% render 'icon', name: 'bible', size: 30 %}</span>
+    <span class="logo__text"><b>Thomas Nelson</b><small>Brasil</small></span>
+  {%- endif -%}
+</a>

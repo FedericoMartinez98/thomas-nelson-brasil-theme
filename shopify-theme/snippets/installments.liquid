@@ -1,0 +1,13 @@
+{%- comment -%} "ou 6x de R$ 9,98 sem juros". Usage: {% render 'installments', amount: cents %} {%- endcomment -%}
+{%- liquid
+  assign min = settings.installment_min | times: 100
+  assign n = settings.installments
+  assign max_by_min = amount | divided_by: min | floor
+  if max_by_min < n
+    assign n = max_by_min
+  endif
+-%}
+{%- if n > 1 -%}
+  {%- assign each = amount | divided_by: n | floor -%}
+  <p class="price__installments">{%- assign each_m = each | money -%}{{ 'products.installments' | t: count: n, amount: each_m }}</p>
+{%- endif -%}

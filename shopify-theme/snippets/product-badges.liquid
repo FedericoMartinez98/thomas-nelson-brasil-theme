@@ -1,0 +1,11 @@
+{%- comment -%} Lançamento / Exclusivo / Oferta / Esgotado badges. {%- endcomment -%}
+{%- liquid
+  assign tags = product.tags | join: ',' | downcase
+  assign t_new = settings.tag_new | downcase
+  assign t_ex = settings.tag_exclusive | downcase
+-%}
+<div class="badges">
+  {%- unless product.available -%}<span class="badge badge--muted">{{ 'products.sold_out' | t }}</span>{%- endunless -%}
+  {%- if tags contains t_new -%}<span class="badge badge--brand">{{ 'products.new' | t }}</span>{%- endif -%}
+  {%- if tags contains t_ex -%}<span class="badge badge--accent">{{ 'products.exclusive' | t }}</span>{%- endif -%}
+</div>

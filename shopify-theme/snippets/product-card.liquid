@@ -1,0 +1,24 @@
+{%- comment -%} Usage: {% render 'product-card', product: product, loading: 'lazy' %} {%- endcomment -%}
+<article class="card">
+  <a class="card__media" href="{{ product.url }}">
+    {% render 'product-media', image: product.featured_image, alt: product.title, loading: loading %}
+    {% render 'product-badges', product: product %}
+  </a>
+  <div class="card__body">
+    {%- if settings.card_show_vendor -%}<p class="card__vendor">{{ product.vendor }}</p>{%- endif -%}
+    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {% render 'price', product: product, show_installments: settings.card_show_installments %}
+  </div>
+  {%- if settings.card_quick_add -%}
+    <div class="card__actions">
+      {%- if product.available -%}
+        {%- form 'product', product -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="btn btn--primary btn--block btn--sm">{% render 'icon', name: 'cart', size: 16 %} {{ 'products.add_short' | t }}</button>
+        {%- endform -%}
+      {%- else -%}
+        <button class="btn btn--ghost btn--block btn--sm" disabled>{{ 'products.sold_out' | t }}</button>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</article>

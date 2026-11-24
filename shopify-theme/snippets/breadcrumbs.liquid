@@ -1,0 +1,17 @@
+{%- comment -%} Breadcrumbs for product, collection, page, article, search. {%- endcomment -%}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a>
+  {%- case template.name -%}
+    {%- when 'product' -%}
+      {%- if collection -%}<span>/</span><a href="{{ collection.url }}">{{ collection.title }}</a>{%- endif -%}
+      <span>/</span><span aria-current="page">{{ product.title | truncate: 60 }}</span>
+    {%- when 'collection' -%}
+      <span>/</span><a href="{{ routes.collections_url }}">Coleções</a><span>/</span><span aria-current="page">{{ collection.title }}</span>
+    {%- when 'article' -%}
+      <span>/</span><a href="{{ blog.url }}">{{ blog.title }}</a><span>/</span><span aria-current="page">{{ article.title | truncate: 50 }}</span>
+    {%- when 'search' -%}
+      <span>/</span><span aria-current="page">{{ 'general.search' | t }}</span>
+    {%- else -%}
+      <span>/</span><span aria-current="page">{{ page_title }}</span>
+  {%- endcase -%}
+</nav>

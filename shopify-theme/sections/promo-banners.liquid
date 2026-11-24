@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="wrap promos promos--{{ section.blocks.size }}">
+    {%- for block in section.blocks -%}
+      <a class="promo" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'promo__img', alt: '' }}{%- else -%}<img class="promo__img" src="{{ block.settings.fallback | asset_url }}" alt="" loading="lazy">{%- endif -%}
+        <span class="promo__content">
+          {%- if block.settings.eyebrow != blank -%}<span class="eyebrow eyebrow--light">{{ block.settings.eyebrow }}</span>{%- endif -%}
+          <span class="promo__title">{{ block.settings.heading }}</span>
+          <span class="promo__cta">{{ block.settings.cta }} {% render 'icon', name: 'arrow-right', size: 16 %}</span>
+        </span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{"name":"Banners promocionais","settings":[],
+"blocks":[{"type":"promo","name":"Banner","settings":[
+ {"type":"image_picker","id":"image","label":"Imagem (900x540)"},
+ {"type":"text","id":"fallback","label":"Imagem padrão (asset)","default":"tn-banner-promo-cs-lewis.jpg"},
+ {"type":"text","id":"eyebrow","label":"Sobretítulo"},
+ {"type":"text","id":"heading","label":"Título","default":"Coleção C. S. Lewis"},
+ {"type":"text","id":"cta","label":"Chamada","default":"Conhecer"},
+ {"type":"url","id":"link","label":"Link"}]}],
+"max_blocks":3,
+"presets":[{"name":"Banners promocionais","blocks":[{"type":"promo"},{"type":"promo"},{"type":"promo"}]}]}
+{% endschema %}

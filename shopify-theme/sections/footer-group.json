@@ -1,0 +1,49 @@
+{
+  "type": "footer",
+  "name": "Rodapé",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "f1": {
+          "type": "menu",
+          "settings": {
+            "title": "Institucional",
+            "menu": "footer-institucional"
+          }
+        },
+        "f2": {
+          "type": "menu",
+          "settings": {
+            "title": "Ajuda",
+            "menu": "footer-ajuda"
+          }
+        },
+        "f3": {
+          "type": "menu",
+          "settings": {
+            "title": "Categorias",
+            "menu": "footer-categorias"
+          }
+        },
+        "f4": {
+          "type": "contact",
+          "settings": {
+            "title": "Atendimento",
+            "email": "sac@thomasnelson.com.br",
+            "hours": "Seg. a sex., 9h às 18h"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,8 @@
+{%- comment -%} Social links from theme settings. {%- endcomment -%}
+<ul class="social">
+  {%- if settings.social_instagram != blank -%}<li><a href="{{ settings.social_instagram }}" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a></li>{%- endif -%}
+  {%- if settings.social_facebook != blank -%}<li><a href="{{ settings.social_facebook }}" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a></li>{%- endif -%}
+  {%- if settings.social_youtube != blank -%}<li><a href="{{ settings.social_youtube }}" aria-label="YouTube">{% render 'icon', name: 'youtube' %}</a></li>{%- endif -%}
+  {%- if settings.social_spotify != blank -%}<li><a href="{{ settings.social_spotify }}" aria-label="Spotify">{% render 'icon', name: 'spotify' %}</a></li>{%- endif -%}
+  {%- if settings.whatsapp != blank -%}<li><a href="{{ settings.whatsapp }}" aria-label="WhatsApp">{% render 'icon', name: 'whatsapp' %}</a></li>{%- endif -%}
+</ul>

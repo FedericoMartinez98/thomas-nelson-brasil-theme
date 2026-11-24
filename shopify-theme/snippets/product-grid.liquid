@@ -1,0 +1,6 @@
+{%- comment -%} Usage: {% render 'product-grid', products: products, limit: 24, columns: 4 %} {%- endcomment -%}
+<div class="grid grid--{{ columns | default: 4 }}">
+  {%- for product in products limit: limit -%}
+    {% render 'product-card', product: product %}
+  {%- endfor -%}
+</div>

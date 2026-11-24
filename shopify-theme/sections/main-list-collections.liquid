@@ -1,0 +1,14 @@
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <h1 class="h1">{{ section.settings.heading }}</h1>
+    <div class="cats cats--page">
+      {%- for collection in collections -%}
+        {%- if collection.products_count > 0 -%}{%- assign sub = 'collections.products_count' | t: count: collection.products_count -%}{% render 'collection-card', collection: collection, subtitle: sub %}{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Lista de coleções","settings":[{"type":"text","id":"heading","label":"Título","default":"Todas as coleções"}]}
+{% endschema %}

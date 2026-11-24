@@ -1,0 +1,50 @@
+<footer class="footer">
+  <div class="footer__news">
+    <div class="wrap footer__news-inner">
+      <div><p class="eyebrow eyebrow--light">Newsletter</p><h2 class="h3">{{ section.settings.news_heading }}</h2><p>{{ section.settings.news_text }}</p></div>
+      {% render 'newsletter-form', id: 'footer-news', button: 'Assinar' %}
+    </div>
+  </div>
+  <div class="wrap footer__cols">
+    <div class="footer__brand">
+      {% render 'logo' %}
+      <p class="muted">{{ section.settings.about }}</p>
+      {% render 'social-icons' %}
+    </div>
+    {%- for block in section.blocks -%}
+      <div class="footer__col" {{ block.shopify_attributes }}>
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            <details open><summary class="footer__title">{{ block.settings.title | default: linklists[block.settings.menu].title }} {% render 'icon', name: 'chevron-down', size: 16 %}</summary>
+              <ul>{%- for l in linklists[block.settings.menu].links -%}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{%- endfor -%}</ul>
+            </details>
+          {%- when 'contact' -%}
+            <p class="footer__title">{{ block.settings.title }}</p>
+            <ul class="footer__contact">
+              {%- if block.settings.email != blank -%}<li>{% render 'icon', name: 'mail', size: 18 %} <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></li>{%- endif -%}
+              {%- if block.settings.phone != blank -%}<li>{% render 'icon', name: 'phone', size: 18 %} {{ block.settings.phone }}</li>{%- endif -%}
+              {%- if block.settings.hours != blank -%}<li>{% render 'icon', name: 'clock', size: 18 %} {{ block.settings.hours }}</li>{%- endif -%}
+            </ul>
+        {%- endcase -%}
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="wrap footer__bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.legal }}</p>
+    {% render 'payment-icons' %}
+  </div>
+</footer>
+{% schema %}
+{"name":"Rodapé","class":"section-footer","settings":[
+ {"type":"text","id":"news_heading","label":"Título newsletter","default":"Novidades da estante, toda semana"},
+ {"type":"text","id":"news_text","label":"Texto newsletter","default":"Lançamentos, cupons exclusivos e uma leitura para a semana."},
+ {"type":"textarea","id":"about","label":"Sobre","default":"Há mais de 200 anos publicando Bíblias e livros cristãos. No Brasil, parte da HarperCollins Brasil."},
+ {"type":"text","id":"legal","label":"Texto legal","default":"Todos os direitos reservados."}],
+"blocks":[
+ {"type":"menu","name":"Menu","settings":[{"type":"text","id":"title","label":"Título"},{"type":"link_list","id":"menu","label":"Menu","default":"footer"}]},
+ {"type":"contact","name":"Contato","limit":1,"settings":[
+  {"type":"text","id":"title","label":"Título","default":"Atendimento"},
+  {"type":"text","id":"email","label":"E-mail","default":"sac@thomasnelson.com.br"},
+  {"type":"text","id":"phone","label":"Telefone"},
+  {"type":"text","id":"hours","label":"Horário","default":"Seg. a sex., 9h às 18h"}]}]}
+{% endschema %}

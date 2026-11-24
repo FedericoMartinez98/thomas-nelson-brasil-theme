@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="wrap">
+    <div class="news">
+      <img class="news__bg" src="{{ section.settings.fallback | asset_url }}" alt="" loading="lazy">
+      <div class="news__content">
+        <p class="eyebrow eyebrow--light">{{ section.settings.eyebrow }}</p>
+        <h2 class="h2">{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.text }}</p>
+        {% render 'newsletter-form', id: 'section-news', button: section.settings.button %}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Newsletter","settings":[
+ {"type":"text","id":"fallback","label":"Imagem de fundo (asset)","default":"tn-banner-newsletter.jpg"},
+ {"type":"text","id":"eyebrow","label":"Sobretítulo","default":"Ganhe 10% OFF"},
+ {"type":"text","id":"heading","label":"Título","default":"Receba lançamentos e cupons em primeira mão"},
+ {"type":"text","id":"text","label":"Texto","default":"Uma vez por semana, sem spam. Cancele quando quiser."},
+ {"type":"text","id":"button","label":"Botão","default":"Quero receber"}],
+"presets":[{"name":"Newsletter"}]}
+{% endschema %}

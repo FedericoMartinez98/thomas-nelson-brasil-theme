@@ -1,0 +1,12 @@
+{%- comment -%} Usage: {% render 'newsletter-form', button: 'Assinar', id: 'footer' %} {%- endcomment -%}
+{%- assign form_id = id | default: 'newsletter' -%}
+{%- form 'customer', id: form_id, class: 'newsletter-form' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  {%- if form.posted_successfully? -%}
+    <p class="form-success">{% render 'icon', name: 'check', size: 18 %} {{ 'general.newsletter_success' | t }}</p>
+  {%- else -%}
+    <input type="email" name="contact[email]" placeholder="seu@email.com" required aria-label="{{ 'customer.email' | t }}">
+    <button class="btn btn--primary" type="submit">{{ button | default: 'Assinar' }}</button>
+    {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+  {%- endif -%}
+{%- endform -%}

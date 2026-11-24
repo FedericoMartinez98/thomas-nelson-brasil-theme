@@ -1,0 +1,122 @@
+{
+  "general": {
+    "page": "Página {{ page }}",
+    "search": "Buscar",
+    "search_placeholder": "Buscar livros, Bíblias, autores...",
+    "menu": "Menu",
+    "close": "Fechar",
+    "view_all": "Ver todos",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "home": "Início",
+    "account": "Minha conta",
+    "cart": "Carrinho",
+    "newsletter_success": "Pronto! Você vai receber nossas novidades."
+  },
+  "accessibility": {
+    "skip_to_content": "Pular para o conteúdo",
+    "slide": "Slide {{ index }}",
+    "scroll_left": "Rolar para a esquerda",
+    "scroll_right": "Rolar para a direita"
+  },
+  "products": {
+    "add_to_cart": "Adicionar ao carrinho",
+    "buy_now": "Comprar agora",
+    "sold_out": "Esgotado",
+    "unavailable": "Indisponível",
+    "sale": "Oferta",
+    "new": "Lançamento",
+    "exclusive": "Exclusivo do site",
+    "off": "{{ percent }}% OFF",
+    "installments": "ou {{ count }}x de {{ amount }} sem juros",
+    "pix": "{{ amount }} no Pix ({{ percent }}% de desconto)",
+    "by": "por",
+    "quantity": "Quantidade",
+    "format": "Formato",
+    "description": "Descrição",
+    "details": "Detalhes do produto",
+    "shipping": "Entrega e trocas",
+    "shipping_calc": "Calcular frete",
+    "zip": "Digite seu CEP",
+    "isbn": "ISBN",
+    "pages": "Páginas",
+    "publisher": "Editora",
+    "release": "Lançamento",
+    "binding": "Acabamento",
+    "related": "Você também pode gostar",
+    "share": "Compartilhar",
+    "add_short": "Adicionar"
+  },
+  "collections": {
+    "products_count": "{{ count }} produtos",
+    "filter": "Filtrar",
+    "filters": "Filtros",
+    "clear": "Limpar filtros",
+    "apply": "Aplicar",
+    "sort_by": "Ordenar por",
+    "price_from": "De",
+    "price_to": "Até",
+    "empty": "Nenhum produto encontrado com esses filtros."
+  },
+  "search": {
+    "title": "Resultados da busca",
+    "results_for": "{{ count }} resultados para “{{ terms }}”",
+    "no_results": "Não encontramos nada para “{{ terms }}”.",
+    "try": "Tente outro termo ou explore as coleções abaixo."
+  },
+  "cart": {
+    "title": "Seu carrinho",
+    "empty": "Seu carrinho está vazio",
+    "empty_text": "Que tal começar por um dos nossos lançamentos?",
+    "continue": "Continuar comprando",
+    "subtotal": "Subtotal",
+    "shipping": "Frete",
+    "shipping_calc": "Calculado no checkout",
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "remove": "Remover",
+    "note": "Observações do pedido",
+    "update": "Atualizar",
+    "free_shipping_left": "Faltam {{ amount }} para ganhar <b>frete grátis</b>",
+    "free_shipping_done": "Você ganhou <b>frete grátis</b>!",
+    "coupon": "Cupons de desconto são aplicados no checkout."
+  },
+  "not_found": {
+    "title": "Página não encontrada",
+    "text": "Parece que esta página saiu da estante. Busque o que procura ou volte para a página inicial.",
+    "back": "Voltar ao início"
+  },
+  "customer": {
+    "login": "Entrar",
+    "logout": "Sair",
+    "register": "Criar conta",
+    "email": "E-mail",
+    "password": "Senha",
+    "first_name": "Nome",
+    "last_name": "Sobrenome",
+    "forgot": "Esqueceu a senha?",
+    "no_account": "Ainda não tem conta?",
+    "have_account": "Já tem conta?",
+    "orders": "Meus pedidos",
+    "no_orders": "Você ainda não fez pedidos.",
+    "order": "Pedido",
+    "date": "Data",
+    "payment": "Pagamento",
+    "fulfillment": "Entrega",
+    "addresses": "Endereços",
+    "hello": "Olá, {{ name }}"
+  },
+  "contact": {
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "send": "Enviar mensagem",
+    "success": "Obrigado! Responderemos em breve."
+  },
+  "blog": {
+    "read_more": "Ler artigo",
+    "back": "Voltar ao blog",
+    "minutes": "{{ count }} min de leitura"
+  }
+}

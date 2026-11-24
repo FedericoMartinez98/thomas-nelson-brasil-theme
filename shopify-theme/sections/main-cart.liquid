@@ -1,0 +1,58 @@
+{%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+<section class="section section--tight">
+  <div class="wrap">
+    <h1 class="h1">{{ 'cart.title' | t }}</h1>
+    {%- if cart.item_count > 0 -%}
+      <form class="cart" action="{{ routes.cart_url }}" method="post" id="cart-form">
+        <div class="cart__items">
+          {%- if threshold > 0 -%}
+            {%- assign left = threshold | minus: cart.total_price -%}
+            {%- assign pct = cart.total_price | times: 100 | divided_by: threshold | floor -%}{%- if pct > 100 -%}{%- assign pct = 100 -%}{%- endif -%}
+            <div class="ship-bar">
+              <p>{% render 'icon', name: 'truck', size: 20 %}<span>{%- if left > 0 -%}{%- assign left_m = left | money -%}{{ 'cart.free_shipping_left' | t: amount: left_m }}{%- else -%}{{ 'cart.free_shipping_done' | t }}{%- endif -%}</span></p>
+              <div class="ship-bar__track"><span style="width:{{ pct }}%"></span></div>
+            </div>
+          {%- endif -%}
+          {%- for item in cart.items -%}
+            <div class="line">
+              <a class="line__img" href="{{ item.url }}">{% render 'product-media', image: item.image, alt: item.title, width: 200 %}</a>
+              <div class="line__info">
+                <p class="card__vendor">{{ item.vendor }}</p>
+                <a class="line__title" href="{{ item.url }}">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}<p class="muted small">{{ item.variant.title }}</p>{%- endunless -%}
+                <p class="line__unit">{{ item.final_price | money }}</p>
+              </div>
+              <div class="line__qty">
+                {%- assign qid = 'qty-' | append: forloop.index -%}
+                {% render 'quantity-input', name: 'updates[]', value: item.quantity, id: qid, min: 0 %}
+                <a class="line__remove" href="{{ item.url_to_remove }}">{% render 'icon', name: 'trash', size: 16 %} {{ 'cart.remove' | t }}</a>
+              </div>
+              <p class="line__total">{{ item.final_line_price | money }}</p>
+            </div>
+          {%- endfor -%}
+          <details class="cart__note"><summary>{{ 'cart.note' | t }}</summary><textarea name="note" rows="3">{{ cart.note }}</textarea></details>
+        </div>
+        <aside class="summary">
+          <h2 class="h3">Resumo</h2>
+          <dl>
+            <dt>{{ 'cart.subtotal' | t }}</dt><dd>{{ cart.total_price | money }}</dd>
+            <dt>{{ 'cart.shipping' | t }}</dt><dd class="muted">{{ 'cart.shipping_calc' | t }}</dd>
+          </dl>
+          <div class="summary__total"><span>{{ 'cart.total' | t }}</span><b>{{ cart.total_price | money }}</b></div>
+          {% render 'installments', amount: cart.total_price %}
+          <button class="btn btn--primary btn--lg btn--block" type="submit" name="checkout">{% render 'icon', name: 'lock', size: 18 %} {{ 'cart.checkout' | t }}</button>
+          <button class="btn btn--ghost btn--block btn--sm" type="submit" name="update">{{ 'cart.update' | t }}</button>
+          <p class="muted small center">{{ 'cart.coupon' | t }}</p>
+          {% render 'payment-icons' %}
+          <a class="link-arrow center" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
+        </aside>
+      </form>
+    {%- else -%}
+      {%- assign t1 = 'cart.empty' | t -%}{%- assign t2 = 'cart.empty_text' | t -%}{%- assign t3 = 'cart.continue' | t -%}
+      {% render 'empty-state', icon: 'cart', title: t1, text: t2, button: t3, link: routes.all_products_collection_url %}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{"name":"Carrinho","settings":[]}
+{% endschema %}

@@ -1,0 +1,287 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-slider",
+      "settings": {
+        "autoplay": 6
+      },
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "fallback": "tn-banner-hero-biblias.jpg",
+            "tone": "light",
+            "eyebrow": "Bíblias Thomas Nelson",
+            "heading": "A Palavra para cada dia",
+            "text": "NVI, ACF e NTLH com letra confortável, acabamentos que duram e opções para estudo e journaling.",
+            "btn_label": "Ver Bíblias",
+            "btn_link": "/collections/biblia",
+            "btn2_label": "Encontre a sua",
+            "btn2_link": "/pages/encontre-sua-biblia"
+          }
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {
+            "fallback": "tn-banner-hero-ficcao.jpg",
+            "tone": "light",
+            "eyebrow": "Ficção cristã",
+            "heading": "Histórias que ficam com você",
+            "text": "De Francine Rivers a Rebeca Sousa: romances, fantasia e aventuras com fé no centro.",
+            "btn_label": "Explorar ficção",
+            "btn_link": "/collections/ficcao"
+          }
+        },
+        "s3": {
+          "type": "slide",
+          "settings": {
+            "fallback": "tn-banner-hero-infantil.jpg",
+            "tone": "dark",
+            "eyebrow": "Para os pequenos",
+            "heading": "Fé que cabe na hora de dormir",
+            "text": "Livros ilustrados que ensinam perdão, amizade e esperança, da autora de Enquanto Ana espera.",
+            "btn_label": "Ver infantis",
+            "btn_link": "/collections/infantil"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "trust": {
+      "type": "trust-badges",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Frete grátis",
+            "text": "Em compras acima de R$ 199"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "card",
+            "title": "Até 6x sem juros",
+            "text": "Em todos os cartões"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "pix",
+            "title": "5% OFF no Pix",
+            "text": "Aprovação imediata"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "title": "Troca fácil",
+            "text": "Até 7 dias após receber"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "settings": {
+        "limit": 12
+      },
+      "blocks": {
+        "a": {
+          "type": "tab",
+          "settings": {
+            "label": "Lançamentos",
+            "collection": "lancamentos-1"
+          }
+        },
+        "b": {
+          "type": "tab",
+          "settings": {
+            "label": "Mais procurados",
+            "collection": "espiritualidade"
+          }
+        },
+        "c": {
+          "type": "tab",
+          "settings": {
+            "label": "Exclusivos",
+            "collection": "exclusivo-do-site"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "cats": {
+      "type": "category-grid",
+      "settings": {
+        "eyebrow": "Explore",
+        "heading": "Encontre sua próxima leitura"
+      },
+      "blocks": {
+        "c1": {
+          "type": "category",
+          "settings": {
+            "collection": "biblia",
+            "title": "Bíblias"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "collection": "biblias-de-estudos",
+            "title": "Bíblias de estudo"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "collection": "devocional",
+            "title": "Devocionais"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "collection": "ficcao",
+            "title": "Ficção cristã"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "collection": "infantil",
+            "title": "Infantil"
+          }
+        },
+        "c6": {
+          "type": "category",
+          "settings": {
+            "collection": "espiritualidade",
+            "title": "Espiritualidade"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
+    },
+    "biblias": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Mais de 250 opções",
+        "heading": "Bíblias",
+        "collection": "biblia",
+        "tinted": true
+      }
+    },
+    "promos": {
+      "type": "promo-banners",
+      "blocks": {
+        "p1": {
+          "type": "promo",
+          "settings": {
+            "fallback": "tn-banner-promo-cs-lewis.jpg",
+            "eyebrow": "Coleção",
+            "heading": "C. S. Lewis",
+            "cta": "Conhecer a coleção",
+            "link": "/collections/colecao-c-s-lewis"
+          }
+        },
+        "p2": {
+          "type": "promo",
+          "settings": {
+            "fallback": "tn-banner-promo-devocionais.jpg",
+            "eyebrow": "Todos os dias",
+            "heading": "Devocionais",
+            "cta": "Ver devocionais",
+            "link": "/collections/devocional"
+          }
+        },
+        "p3": {
+          "type": "promo",
+          "settings": {
+            "fallback": "tn-banner-promo-estudo.jpg",
+            "eyebrow": "Para ir mais fundo",
+            "heading": "Bíblias de estudo",
+            "cta": "Ver Bíblias de estudo",
+            "link": "/collections/biblias-de-estudos"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "ficcao": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Romances, fantasia e aventura",
+        "heading": "Ficção cristã",
+        "collection": "ficcao"
+      }
+    },
+    "finder": {
+      "type": "bible-finder",
+      "settings": {
+        "collection": "biblia"
+      }
+    },
+    "infantil": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Para crianças",
+        "heading": "Infantil",
+        "collection": "infantil"
+      }
+    },
+    "devocional": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Um minuto com Deus",
+        "heading": "Devocionais",
+        "collection": "devocional",
+        "tinted": true
+      }
+    },
+    "news": {
+      "type": "newsletter"
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "tabs",
+    "cats",
+    "biblias",
+    "promos",
+    "ficcao",
+    "finder",
+    "infantil",
+    "devocional",
+    "news"
+  ]
+}

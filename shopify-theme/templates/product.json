@@ -1,0 +1,96 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_buy_now": true
+          }
+        },
+        "shipping": {
+          "type": "shipping"
+        },
+        "perks": {
+          "type": "perks"
+        },
+        "details": {
+          "type": "details"
+        },
+        "share": {
+          "type": "share"
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "buy",
+        "shipping",
+        "perks",
+        "details",
+        "share"
+      ]
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "limit": 10
+      }
+    },
+    "trust": {
+      "type": "trust-badges",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Frete grátis",
+            "text": "Em compras acima de R$ 199"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "card",
+            "title": "Até 6x sem juros",
+            "text": "Em todos os cartões"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "pix",
+            "title": "5% OFF no Pix",
+            "text": "Aprovação imediata"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Compra segura",
+            "text": "Seus dados protegidos"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "related",
+    "trust"
+  ]
+}

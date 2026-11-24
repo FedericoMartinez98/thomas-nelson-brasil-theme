@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "finder": {
+      "type": "bible-finder",
+      "settings": {
+        "heading": "Encontre a Bíblia que combina com você",
+        "collection": "biblia"
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "settings": {
+        "heading": "Bíblias mais procuradas",
+        "limit": 12
+      },
+      "blocks": {
+        "a": {
+          "type": "tab",
+          "settings": {
+            "label": "Todas",
+            "collection": "biblia"
+          }
+        },
+        "b": {
+          "type": "tab",
+          "settings": {
+            "label": "De estudo",
+            "collection": "biblias-de-estudos"
+          }
+        },
+        "c": {
+          "type": "tab",
+          "settings": {
+            "label": "Lançamentos",
+            "collection": "lancamentos-1"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "content": {
+      "type": "main-page"
+    }
+  },
+  "order": [
+    "finder",
+    "tabs",
+    "content"
+  ]
+}

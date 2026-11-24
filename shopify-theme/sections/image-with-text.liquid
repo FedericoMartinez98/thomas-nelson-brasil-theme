@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="wrap iwt{% if section.settings.reverse %} iwt--reverse{% endif %}">
+    <div class="iwt__media">
+      {%- if section.settings.image != blank -%}{{ section.settings.image | image_url: width: 1100 | image_tag: loading: 'lazy', alt: section.settings.heading }}{%- else -%}<img src="{{ section.settings.fallback | asset_url }}" alt="" loading="lazy">{%- endif -%}
+    </div>
+    <div class="iwt__text">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+      {% render 'button', label: section.settings.btn_label, link: section.settings.btn_link, icon: 'arrow-right' %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Imagem com texto","settings":[
+ {"type":"image_picker","id":"image","label":"Imagem"},
+ {"type":"text","id":"fallback","label":"Imagem padrão (asset)","default":"tn-banner-newsletter.jpg"},
+ {"type":"text","id":"eyebrow","label":"Sobretítulo","default":"Autora em destaque"},
+ {"type":"text","id":"heading","label":"Título","default":"Fernanda Witwytzky"},
+ {"type":"richtext","id":"text","label":"Texto","default":"<p>Da Bíblia Cada dia aos livros infantis que ensinam fé com delicadeza.</p>"},
+ {"type":"text","id":"btn_label","label":"Botão","default":"Ver livros da autora"},
+ {"type":"url","id":"btn_link","label":"Link"},
+ {"type":"checkbox","id":"reverse","label":"Imagem à direita","default":false}],
+"presets":[{"name":"Imagem com texto"}]}
+{% endschema %}

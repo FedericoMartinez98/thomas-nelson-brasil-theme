@@ -1,0 +1,15 @@
+<section class="section section--tinted" data-recommendations data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}&intent=related">
+  <div class="wrap">
+    {% render 'section-heading', title: section.settings.heading %}
+    <div data-recommendations-body>
+      {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+        {% render 'product-slider', products: recommendations.products, limit: section.settings.limit %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Produtos relacionados","settings":[
+ {"type":"text","id":"heading","label":"Título","default":"Você também pode gostar"},
+ {"type":"range","id":"limit","label":"Produtos","min":4,"max":12,"step":1,"default":10}]}
+{% endschema %}

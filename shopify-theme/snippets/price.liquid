@@ -1,0 +1,23 @@
+{%- comment -%}
+  Usage: {% render 'price', product: product, variant: variant, show_installments: true, show_pix: false, size: 'lg' %}
+{%- endcomment -%}
+{%- liquid
+  assign v = variant | default: product.selected_or_first_available_variant
+  assign p = v.price | default: product.price
+  assign cmp = v.compare_at_price | default: product.compare_at_price
+-%}
+<div class="price{% if size %} price--{{ size }}{% endif %}" data-price>
+  <div class="price__row">
+    {%- if cmp > p -%}<s class="price__compare">{{ cmp | money }}</s>{%- endif -%}
+    <span class="price__current">{{ p | money }}</span>
+    {%- if cmp > p -%}
+      {%- assign off = cmp | minus: p | times: 100 | divided_by: cmp | floor -%}
+      <span class="badge badge--sale">{{ 'products.off' | t: percent: off }}</span>
+    {%- endif -%}
+  </div>
+  {%- if show_installments -%}{% render 'installments', amount: p %}{%- endif -%}
+  {%- if show_pix and settings.pix_discount > 0 -%}
+    {%- assign pix = 100 | minus: settings.pix_discount | times: p | divided_by: 100 | floor -%}
+    <p class="price__pix">{% render 'icon', name: 'pix', size: 16 %} {%- assign pix_m = pix | money -%}{{ 'products.pix' | t: amount: pix_m, percent: settings.pix_discount }}</p>
+  {%- endif -%}
+</div>

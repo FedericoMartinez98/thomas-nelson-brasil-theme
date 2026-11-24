@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="wrap auth">
+    <div class="card-box">
+      <h1 class="h2">{{ 'customer.login' | t }}</h1>
+      {%- form 'customer_login', class: 'form' -%}
+        {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+        <label>{{ 'customer.email' | t }}<input type="email" name="customer[email]" autocomplete="email" required></label>
+        <label>{{ 'customer.password' | t }}<input type="password" name="customer[password]" autocomplete="current-password" required></label>
+        <a class="small" href="#recover">{{ 'customer.forgot' | t }}</a>
+        <button class="btn btn--primary btn--block" type="submit">{{ 'customer.login' | t }}</button>
+      {%- endform -%}
+      <p class="center muted">{{ 'customer.no_account' | t }} <a href="{{ routes.account_register_url }}">{{ 'customer.register' | t }}</a></p>
+    </div>
+    <div class="auth__aside">
+      <h2 class="h3">Por que criar uma conta?</h2>
+      <ul class="finder__points"><li>{% render 'icon', name: 'check', size: 18 %} Acompanhe seus pedidos</li><li>{% render 'icon', name: 'check', size: 18 %} Checkout mais rápido</li><li>{% render 'icon', name: 'check', size: 18 %} Cupons exclusivos para clientes</li></ul>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Login","settings":[]}
+{% endschema %}

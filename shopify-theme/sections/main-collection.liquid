@@ -1,0 +1,45 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <header class="plp-hero">
+      <div>
+        <h1 class="h1">{{ collection.title }}</h1>
+        {%- if collection.description != blank -%}<div class="rte muted">{{ collection.description }}</div>{%- endif -%}
+      </div>
+      {%- if collection.image -%}<div class="plp-hero__img">{{ collection.image | image_url: width: 600 | image_tag: alt: collection.title }}</div>{%- endif -%}
+    </header>
+    <div class="plp">
+      <aside class="plp__side" id="filters" data-filters>
+        <div class="plp__side-head"><b>{% render 'icon', name: 'filter', size: 18 %} {{ 'collections.filters' | t }}</b><button class="icon-btn" type="button" data-filters-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button></div>
+        {% render 'facets', results: collection %}
+      </aside>
+      <div class="plp__main">
+        <div class="toolbar">
+          <button class="btn btn--ghost btn--sm toolbar__filter" type="button" data-filters-open>{% render 'icon', name: 'filter', size: 16 %} {{ 'collections.filter' | t }}</button>
+          <p class="muted">{{ 'collections.products_count' | t: count: collection.products_count }}</p>
+          <label class="toolbar__sort">{{ 'collections.sort_by' | t }}
+            <select name="sort_by" form="facets" data-sort>
+              {%- assign sort = collection.sort_by | default: collection.default_sort_by -%}
+              {%- for option in collection.sort_options -%}<option value="{{ option.value }}" {% if option.value == sort %}selected{% endif %}>{{ option.name }}</option>{%- endfor -%}
+            </select>
+          </label>
+        </div>
+        {% render 'active-filters', results: collection %}
+        {%- if collection.products.size > 0 -%}
+          {% render 'product-grid', products: collection.products, limit: section.settings.per_page, columns: section.settings.columns %}
+        {%- else -%}
+          {%- assign t1 = 'collections.empty' | t -%}{%- assign t2 = 'collections.clear' | t -%}
+          {% render 'empty-state', icon: 'search', title: t1, button: t2, link: collection.url %}
+        {%- endif -%}
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endpaginate -%}
+{% schema %}
+{"name":"Coleção (categoria)","settings":[
+ {"type":"range","id":"per_page","label":"Produtos por página","min":12,"max":48,"step":4,"default":24},
+ {"type":"range","id":"columns","label":"Colunas (desktop)","min":3,"max":5,"step":1,"default":4}]}
+{% endschema %}

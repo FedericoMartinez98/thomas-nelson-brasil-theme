@@ -1,0 +1,8 @@
+{%- comment -%} Usage: {% render 'section-heading', title: '', eyebrow: '', link: url, link_label: '' %} {%- endcomment -%}
+<div class="section-head">
+  <div>
+    {%- if eyebrow != blank -%}<p class="eyebrow">{{ eyebrow }}</p>{%- endif -%}
+    {%- if title != blank -%}<h2 class="h2">{{ title }}</h2>{%- endif -%}
+  </div>
+  {%- if link != blank -%}<a class="link-arrow" href="{{ link }}">{%- if link_label != blank -%}{{ link_label }}{%- else -%}{{ 'general.view_all' | t }}{%- endif -%} {% render 'icon', name: 'arrow-right', size: 16 %}</a>{%- endif -%}
+</div>

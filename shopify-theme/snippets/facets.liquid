@@ -1,0 +1,30 @@
+{%- comment -%}
+  Storefront filtering (Search & Discovery app). Usage: {% render 'facets', results: collection, sort: true %}
+  Auto-submits on change (theme.js).
+{%- endcomment -%}
+<form class="facets" id="facets" data-facets>
+  {%- if results.terms -%}<input type="hidden" name="q" value="{{ results.terms | escape }}">{%- endif -%}
+  {%- for filter in results.filters -%}
+    <details class="facet" {% if forloop.index <= 3 or filter.active_values.size > 0 %}open{% endif %}>
+      <summary>{{ filter.label }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary>
+      <div class="facet__body">
+        {%- case filter.type -%}
+          {%- when 'price_range' -%}
+            <div class="facet__price">
+              <label>{{ 'collections.price_from' | t }}<input type="number" name="{{ filter.min_value.param_name }}" value="{% if filter.min_value.value %}{{ filter.min_value.value | divided_by: 100 }}{% endif %}" placeholder="0"></label>
+              <label>{{ 'collections.price_to' | t }}<input type="number" name="{{ filter.max_value.param_name }}" value="{% if filter.max_value.value %}{{ filter.max_value.value | divided_by: 100 }}{% endif %}" placeholder="{{ filter.range_max | divided_by: 100 }}"></label>
+            </div>
+          {%- else -%}
+            {%- for value in filter.values -%}
+              <label class="facet__option{% if value.count == 0 and value.active == false %} is-disabled{% endif %}">
+                <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                <span class="facet__check">{% render 'icon', name: 'check', size: 14 %}</span>
+                <span>{{ value.label }}</span><span class="facet__count">{{ value.count }}</span>
+              </label>
+            {%- endfor -%}
+        {%- endcase -%}
+      </div>
+    </details>
+  {%- endfor -%}
+  <noscript><button class="btn btn--primary btn--block" type="submit">{{ 'collections.apply' | t }}</button></noscript>
+</form>

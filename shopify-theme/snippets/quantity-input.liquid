@@ -1,0 +1,6 @@
+{%- comment -%} Usage: {% render 'quantity-input', name: 'quantity', value: 1, id: 'qty' %} {%- endcomment -%}
+<div class="qty" data-qty>
+  <button type="button" data-qty-minus aria-label="-">{% render 'icon', name: 'minus', size: 16 %}</button>
+  <input id="{{ id }}" type="number" name="{{ name | default: 'quantity' }}" value="{{ value | default: 1 }}" min="{{ min | default: 1 }}" aria-label="{{ 'products.quantity' | t }}">
+  <button type="button" data-qty-plus aria-label="+">{% render 'icon', name: 'plus', size: 16 %}</button>
+</div>

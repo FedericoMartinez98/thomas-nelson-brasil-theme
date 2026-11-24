@@ -1,0 +1,17 @@
+{%- assign c = section.settings.collection -%}
+<section class="section{% if section.settings.tinted %} section--tinted{% endif %}">
+  <div class="wrap">
+    {%- assign title = section.settings.heading | default: c.title -%}
+    {% render 'section-heading', title: title, eyebrow: section.settings.eyebrow, link: c.url %}
+    {% render 'product-slider', products: c.products, limit: section.settings.limit %}
+  </div>
+</section>
+{% schema %}
+{"name":"Carrossel de coleção","settings":[
+ {"type":"text","id":"eyebrow","label":"Sobretítulo"},
+ {"type":"text","id":"heading","label":"Título"},
+ {"type":"collection","id":"collection","label":"Coleção"},
+ {"type":"range","id":"limit","label":"Produtos","min":4,"max":24,"step":1,"default":12},
+ {"type":"checkbox","id":"tinted","label":"Fundo destacado","default":false}],
+"presets":[{"name":"Carrossel de coleção"}]}
+{% endschema %}

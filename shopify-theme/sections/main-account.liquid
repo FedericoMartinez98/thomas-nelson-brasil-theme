@@ -1,0 +1,36 @@
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="account-head">
+      <h1 class="h1">{{ 'customer.hello' | t: name: customer.first_name }}</h1>
+      <a class="btn btn--ghost btn--sm" href="{{ routes.account_logout_url }}">{{ 'customer.logout' | t }}</a>
+    </div>
+    <div class="account">
+      <div class="card-box">
+        <h2 class="h3">{{ 'customer.orders' | t }}</h2>
+        {%- paginate customer.orders by 10 -%}
+          {%- if customer.orders.size > 0 -%}
+            <table class="table">
+              <thead><tr><th>{{ 'customer.order' | t }}</th><th>{{ 'customer.date' | t }}</th><th>{{ 'customer.payment' | t }}</th><th>{{ 'customer.fulfillment' | t }}</th><th>{{ 'cart.total' | t }}</th></tr></thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr><td><a href="{{ order.customer_url }}">{{ order.name }}</a></td><td>{{ order.created_at | date: '%d/%m/%Y' }}</td><td><span class="badge badge--brand">{{ order.financial_status_label }}</span></td><td>{{ order.fulfillment_status_label }}</td><td>{{ order.total_price | money }}</td></tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {% render 'pagination', paginate: paginate %}
+          {%- else -%}
+            <p class="muted">{{ 'customer.no_orders' | t }}</p>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+      <div class="card-box">
+        <h2 class="h3">{{ 'customer.addresses' | t }}</h2>
+        {%- if customer.default_address -%}{{ customer.default_address | format_address }}{%- else -%}<p class="muted">Nenhum endereço cadastrado.</p>{%- endif -%}
+        <a class="link-arrow" href="{{ routes.account_addresses_url }}">Gerenciar endereços {% render 'icon', name: 'arrow-right', size: 16 %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Minha conta","settings":[]}
+{% endschema %}

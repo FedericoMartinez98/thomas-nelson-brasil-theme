@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart"
+    },
+    "suggest": {
+      "type": "collection-slider",
+      "settings": {
+        "eyebrow": "Aproveite e leve também",
+        "heading": "Lançamentos",
+        "collection": "lancamentos-1",
+        "tinted": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "suggest"
+  ]
+}

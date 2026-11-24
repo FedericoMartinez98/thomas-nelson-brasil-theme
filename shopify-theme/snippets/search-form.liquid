@@ -1,0 +1,7 @@
+{%- comment -%} Usage: {% render 'search-form', terms: search.terms, size: 'lg' %} {%- endcomment -%}
+<form class="search-form{% if size %} search-form--{{ size }}{% endif %}" action="{{ routes.search_url }}" method="get" role="search">
+  <input type="hidden" name="type" value="product">
+  <label class="visually-hidden" for="q-{{ id | default: 'main' }}">{{ 'general.search' | t }}</label>
+  <input id="q-{{ id | default: 'main' }}" type="search" name="q" value="{{ terms | escape }}" placeholder="{{ 'general.search_placeholder' | t }}" autocomplete="off">
+  <button type="submit" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search', size: 20 %}</button>
+</form>

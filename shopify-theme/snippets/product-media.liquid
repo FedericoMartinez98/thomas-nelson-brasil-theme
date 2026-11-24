@@ -1,0 +1,11 @@
+{%- comment -%} Usage: {% render 'product-media', image: product.featured_image, alt: '', width: 480, loading: 'lazy' %} {%- endcomment -%}
+{%- liquid
+  assign w = width | default: 480
+  assign l = loading | default: 'lazy'
+  assign a = alt | escape
+-%}
+{%- if image -%}
+  {{ image | image_url: width: w | image_tag: loading: l, alt: a, widths: '240, 360, 480, 720, 960', sizes: '(min-width: 990px) 240px, 45vw' }}
+{%- else -%}
+  {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+{%- endif -%}

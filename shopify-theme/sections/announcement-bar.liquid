@@ -1,0 +1,19 @@
+<div class="announce" role="region" aria-label="Avisos">
+  <div class="wrap announce__inner" data-rotator>
+    {%- for block in section.blocks -%}
+      <p class="announce__item{% if forloop.first %} is-on{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.icon != blank -%}{% render 'icon', name: block.settings.icon, size: 16 %}{%- endif -%}
+        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ block.settings.text }}</a>{%- else -%}{{ block.settings.text }}{%- endif -%}
+      </p>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{"name":"Barra de avisos","class":"section-announce","settings":[],
+"blocks":[{"type":"message","name":"Mensagem","settings":[
+ {"type":"text","id":"text","label":"Texto","default":"Use o cupom PRIMEIRACOMPRA10 para 10% OFF no primeiro pedido"},
+ {"type":"text","id":"icon","label":"Ícone (nome)","default":"gift"},
+ {"type":"url","id":"link","label":"Link"}]}],
+"max_blocks":4,
+"presets":[{"name":"Barra de avisos","blocks":[{"type":"message"}]}]}
+{% endschema %}

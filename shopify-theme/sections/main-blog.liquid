@@ -1,0 +1,19 @@
+{%- paginate blog.articles by 9 -%}
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <h1 class="h1">{{ blog.title }}</h1>
+    {%- if blog.all_tags.size > 0 -%}
+      <div class="chips">
+        <a class="chip{% if current_tags == blank %} is-on{% endif %}" href="{{ blog.url }}">Todos</a>
+        {%- for tag in blog.all_tags -%}<a class="chip{% if current_tags contains tag %} is-on{% endif %}" href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>{%- endfor -%}
+      </div>
+    {%- endif -%}
+    <div class="posts">{%- for article in blog.articles -%}{% render 'article-card', article: article %}{%- endfor -%}</div>
+    {% render 'pagination', paginate: paginate %}
+  </div>
+</section>
+{%- endpaginate -%}
+{% schema %}
+{"name":"Blog","settings":[]}
+{% endschema %}

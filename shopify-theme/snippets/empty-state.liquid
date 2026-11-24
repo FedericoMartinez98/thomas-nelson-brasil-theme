@@ -1,0 +1,7 @@
+{%- comment -%} Usage: {% render 'empty-state', icon: 'cart', title: '', text: '', button: '', link: '' %} {%- endcomment -%}
+<div class="empty">
+  <span class="empty__icon">{%- assign ic = icon | default: 'book' -%}{% render 'icon', name: ic, size: 40 %}</span>
+  <h2 class="h2">{{ title }}</h2>
+  {%- if text != blank -%}<p class="muted">{{ text }}</p>{%- endif -%}
+  {%- if button != blank -%}{% render 'button', label: button, link: link %}{%- endif -%}
+</div>

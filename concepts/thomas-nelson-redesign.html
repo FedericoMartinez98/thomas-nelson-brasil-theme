@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publisher Redesign Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--surface:#fff;--ink:#1f1b16;--muted:#6b6259;--line:#e7dfd3;--accent:#8a5a2b;--accent-ink:#fff;--deep:#22303c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--surface:#1e1b16;--ink:#f2ece3;--muted:#a89e91;--line:#332d25;--accent:#d29a5c;--accent-ink:#15130f;--deep:#0f171e}}
+:root[data-theme="dark"]{--bg:#15130f;--surface:#1e1b16;--ink:#f2ece3;--muted:#a89e91;--line:#332d25;--accent:#d29a5c;--accent-ink:#15130f;--deep:#0f171e}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.notice{background:var(--deep);color:#e9e2d6;font-size:13px;text-align:center;padding:8px 16px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:24px;height:68px}
+.logo{font:700 26px "Cormorant Garamond",serif;letter-spacing:.5px}
+.links{display:flex;gap:22px;font-size:14px;font-weight:500;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--surface);color:var(--muted);font-size:14px;min-width:220px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:72px 0}
+.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font:600 clamp(40px,6vw,68px)/1.05 "Cormorant Garamond",serif;margin:14px 0 18px}
+.lead{color:var(--muted);font-size:18px;max-width:520px}
+.ctas{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent)}
+.stack{position:relative;height:420px}
+.cover{border-radius:4px 10px 10px 4px;box-shadow:0 18px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;justify-content:space-between;padding:18px;color:#fff;font-family:"Cormorant Garamond",serif}
+.cover b{font-size:22px;line-height:1.1}.cover small{font:500 11px Inter;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+.stack .cover{position:absolute;width:220px;height:auto;padding:0}
+.book img.cover{width:100%;aspect-ratio:2/3;object-fit:cover;padding:0;display:block}
+.stack .c1{left:0;top:60px;transform:rotate(-6deg)}
+.stack .c2{left:28%;top:10px;z-index:2}
+.stack .c3{right:0;top:70px;transform:rotate(6deg)}
+.g1{background:linear-gradient(160deg,#7a4b24,#3b2412)}.g2{background:linear-gradient(160deg,#22303c,#0e161d)}.g3{background:linear-gradient(160deg,#6f7d5c,#2f3a24)}.g4{background:linear-gradient(160deg,#9b3d3d,#4a1717)}.g5{background:linear-gradient(160deg,#c49a52,#6d4f1f)}.g6{background:linear-gradient(160deg,#4d5f80,#1f2a3f)}
+section{padding:56px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+h2{font:600 38px/1.1 "Cormorant Garamond",serif}
+.tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs button{border:0;background:none;color:var(--muted);font:500 14px Inter;padding:8px 16px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:24px}
+.book .cover{aspect-ratio:2/3;height:auto}
+.book h3{font:600 15px/1.3 Inter;margin-top:12px}
+.book p{color:var(--muted);font-size:13px}
+.book .row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.price{font-weight:600}.add{font-size:13px;color:var(--accent);font-weight:600}
+.finder{background:var(--deep);color:#f2ece3;border-radius:20px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.finder h2{color:#fff}.finder p{color:#c9c0b3;margin-top:10px}
+.q{display:grid;gap:12px}
+.q label{font-size:13px;color:#c9c0b3}
+.q select{width:100%;padding:12px;border-radius:10px;border:1px solid #3a4a58;background:#16212b;color:#fff;font:inherit}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.cat span{font:600 24px "Cormorant Garamond",serif}.cat em{font-style:normal;color:var(--muted);font-size:14px}
+.news{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px;text-align:center}
+.news form{display:flex;gap:8px;max-width:460px;margin:20px auto 0}
+.news input{flex:1;padding:13px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
+.fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+.fcols b{color:var(--ink);display:block;margin-bottom:8px}
+@media (max-width:860px){.links,.search{display:none}.hero,.finder{grid-template-columns:1fr}.stack{height:340px}.stack .cover{width:170px;height:250px}.cats{grid-template-columns:1fr 1fr}.fcols{grid-template-columns:1fr 1fr}.finder{padding:28px}.news form{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="notice">Unofficial redesign concept: real covers, placeholder prices, not affiliated with the publisher</div>
+<header><div class="wrap nav">
+  <a class="logo" href="#">Thomas Nelson</a>
+  <nav class="links"><a href="#">Bibles</a><a href="#">New Releases</a><a href="#">Bestsellers</a><a href="#">Kids</a><a href="#">Gifts</a><a href="#">Audio</a><a href="#">About</a></nav>
+  <div class="search">⌕ Search books, authors, Bibles</div>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">The Advent Season</div>
+      <h1>Stories that carry hope into every home</h1>
+      <p class="lead">Bibles, devotionals and books for every age, from trusted authors and a publishing heritage of more than two centuries.</p>
+      <div class="ctas"><a class="btn primary" href="#">Shop Advent books</a><a class="btn ghost" href="#finder">Find your Bible</a></div>
+    </div>
+    <div class="stack">
+      <img class="cover c1" src="covers/9781400356126.jpg" alt="The Battle for Heaven and Earth">
+      <img class="cover c2" src="covers/9781400256112.jpg" alt="Breath as Prayer for Kids">
+      <img class="cover c3" src="covers/9781400359608.jpg" alt="The Reason for Jesus">
+    </div>
+  </div>
+
+  <section>
+    <div class="head"><h2>Discover</h2>
+      <div class="tabs" role="tablist"><button class="on" data-t="new">Just Released</button><button data-t="soon">Coming Soon</button><button data-t="best">Bestsellers</button></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="finder"><div class="finder">
+    <div><div class="eyebrow">Bible Finder</div><h2>The right Bible in three questions</h2><p>Translation, purpose and format. We match you with editions that fit how you read.</p></div>
+    <div class="q">
+      <label>Who is it for?<select><option>Myself</option><option>A child</option><option>A gift</option></select></label>
+      <label>Preferred translation<select><option>NKJV</option><option>KJV</option><option>Not sure</option></select></label>
+      <label>How will it be used?<select><option>Daily reading</option><option>In-depth study</option><option>Journaling</option></select></label>
+      <a class="btn primary" style="text-align:center" href="#">Show my matches</a>
+    </div>
+  </div></section>
+
+  <section>
+    <div class="head"><h2>Browse by need</h2></div>
+    <div class="cats">
+      <a class="cat" href="#"><span>Devotionals</span><em>Daily reading →</em></a>
+      <a class="cat" href="#"><span>For Kids</span><em>Picture books & Bibles →</em></a>
+      <a class="cat" href="#"><span>Fiction</span><em>Faith-filled stories →</em></a>
+      <a class="cat" href="#"><span>Gifts</span><em>Journals & editions →</em></a>
+    </div>
+  </section>
+
+  <section><div class="news">
+    <h2>A short weekly note, worth opening</h2>
+    <p style="color:var(--muted)">New releases, author conversations and a reading for the week.</p>
+    <form onsubmit="event.preventDefault();this.innerHTML='<p>Thanks, you are on the list.</p>'"><input type="email" placeholder="you@email.com" required><button class="btn primary">Subscribe</button></form>
+  </div></section>
+</main>
+
+<footer><div class="wrap fcols">
+  <div><b>Thomas Nelson</b>Concept homepage for discussion.</div>
+  <div><b>Shop</b>Bibles<br>New Releases<br>Bestsellers</div>
+  <div><b>Company</b>About<br>Imprints<br>Careers</div>
+  <div><b>Help</b>Contact<br>Permissions<br>Manuscripts</div>
+</div></footer>
+
+<script>
+const data={
+ new:[["9781400256112","Breath as Prayer for Kids","Children"],["9781400242214","Rooted, Not Rushed","Christian Living"],["9780785289920","It's Not Personal","Relationships"],["9780840717719","Pride and Practicality","Fiction"],["9781400255481","Knowing the God Who Never Changes","Theology"],["9781400356713","The Christmas Yes List","Seasonal"]],
+ soon:[["9781400258154","Liked","Christian Living"],["9781400259304","Precious Moments: God Loves You, and I Do Too","Children"],["9781400257881","Ten Little Easter Baskets","Children"],["9781400262373","The First Easter","Children"],["9781400358052","Fear Not","Devotional"],["9781400260102","Jesus Listens Bedtime Prayers","Children"]],
+ best:[["9781400356829","Contend","Christian Living"],["9781400349678","The King Is Coming","Prophecy"],["9781400257058","Everyday Hallelujah","Devotional"],["9781400250813","Jesus Calling, Commemorative Edition","Devotional"],["9781400224388","The Forgiveness Journal","Journal"],["9781400246540","Unbreakable Courage","Christian Living"]]};
+const grid=document.getElementById('grid');
+function show(k){grid.innerHTML=data[k].map(([i,t,c])=>`<a class="book" href="#"><img class="cover" loading="lazy" src="covers/${i}.jpg" alt="${t}"><h3>${t}</h3><p>${c}</p><div class="row"><span class="price">$19.99</span><span class="add">Add +</span></div></a>`).join('')}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');show(b.dataset.t)});
+show('new');
+</script>
+</body>
+</html>

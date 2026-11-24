@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-search"
+    },
+    "suggest": {
+      "type": "collection-slider",
+      "settings": {
+        "heading": "Mais procurados",
+        "collection": "espiritualidade",
+        "tinted": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "suggest"
+  ]
+}

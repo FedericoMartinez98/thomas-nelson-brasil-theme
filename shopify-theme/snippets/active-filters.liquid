@@ -1,0 +1,13 @@
+{%- comment -%} Chips for active filters. Usage: {% render 'active-filters', results: collection %} {%- endcomment -%}
+{%- assign has_active = false -%}
+{%- for f in results.filters -%}{%- if f.active_values.size > 0 or f.min_value.value or f.max_value.value -%}{%- assign has_active = true -%}{%- endif -%}{%- endfor -%}
+{%- if has_active -%}
+  <div class="chips">
+    {%- for f in results.filters -%}
+      {%- for v in f.active_values -%}
+        <a class="chip is-on" href="{{ v.url_to_remove }}">{{ v.label }} {% render 'icon', name: 'close', size: 14 %}</a>
+      {%- endfor -%}
+    {%- endfor -%}
+    <a class="chip chip--clear" href="{{ results.url | default: routes.search_url }}{% if results.terms %}?q={{ results.terms | url_encode }}{% endif %}">{{ 'collections.clear' | t }}</a>
+  </div>
+{%- endif -%}

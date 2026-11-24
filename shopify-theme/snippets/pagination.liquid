@@ -1,0 +1,12 @@
+{%- comment -%} Usage: inside {% paginate %}: {% render 'pagination', paginate: paginate %} {%- endcomment -%}
+{%- if paginate.pages > 1 -%}
+  <nav class="pagination" aria-label="Paginação">
+    {%- if paginate.previous -%}<a class="pagination__btn" href="{{ paginate.previous.url }}">{% render 'icon', name: 'chevron-left', size: 18 %} {{ 'general.previous' | t }}</a>{%- endif -%}
+    {%- for part in paginate.parts -%}
+      {%- if part.is_link -%}<a class="pagination__num" href="{{ part.url }}">{{ part.title }}</a>
+      {%- elsif part.title == paginate.current_page -%}<span class="pagination__num is-current" aria-current="page">{{ part.title }}</span>
+      {%- else -%}<span class="pagination__gap">{{ part.title }}</span>{%- endif -%}
+    {%- endfor -%}
+    {%- if paginate.next -%}<a class="pagination__btn" href="{{ paginate.next.url }}">{{ 'general.next' | t }} {% render 'icon', name: 'chevron-right', size: 18 %}</a>{%- endif -%}
+  </nav>
+{%- endif -%}

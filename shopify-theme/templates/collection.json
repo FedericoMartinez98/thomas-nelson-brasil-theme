@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "per_page": 24,
+        "columns": 4
+      }
+    },
+    "promos": {
+      "type": "promo-banners",
+      "blocks": {
+        "p1": {
+          "type": "promo",
+          "settings": {
+            "fallback": "tn-banner-promo-cs-lewis.jpg",
+            "eyebrow": "Coleção",
+            "heading": "C. S. Lewis",
+            "cta": "Conhecer",
+            "link": "/collections/colecao-c-s-lewis"
+          }
+        },
+        "p2": {
+          "type": "promo",
+          "settings": {
+            "fallback": "tn-banner-promo-estudo.jpg",
+            "eyebrow": "Para ir mais fundo",
+            "heading": "Bíblias de estudo",
+            "cta": "Ver todas",
+            "link": "/collections/biblias-de-estudos"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "promos"
+  ]
+}

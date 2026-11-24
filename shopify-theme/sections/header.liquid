@@ -1,0 +1,81 @@
+{%- assign menu = linklists[section.settings.menu] -%}
+<header class="header" data-header>
+  <div class="wrap header__main">
+    <details class="drawer" data-drawer>
+      <summary class="icon-btn header__burger" aria-label="{{ 'general.menu' | t }}">{% render 'icon', name: 'menu' %}</summary>
+      <div class="drawer__panel">
+        <div class="drawer__head">{% render 'logo' %}<button class="icon-btn" type="button" data-drawer-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button></div>
+        {% render 'search-form', id: 'drawer' %}
+        <nav class="drawer__nav">
+          {%- for link in menu.links -%}
+            {%- if link.links.size > 0 -%}
+              <details><summary>{{ link.title }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary>
+                <ul>{%- for child in link.links -%}<li><a href="{{ child.url }}">{{ child.title }}</a></li>{%- for g in child.links -%}<li class="drawer__sub"><a href="{{ g.url }}">{{ g.title }}</a></li>{%- endfor -%}{%- endfor -%}</ul>
+              </details>
+            {%- else -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+        <div class="drawer__foot">
+          <a href="{{ routes.account_url }}">{% render 'icon', name: 'user', size: 20 %} {{ 'general.account' | t }}</a>
+          {% render 'social-icons' %}
+        </div>
+      </div>
+    </details>
+    {% render 'logo' %}
+    <div class="header__search">{% render 'search-form', terms: search.terms, id: 'header' %}</div>
+    <div class="header__icons">
+      <a class="icon-btn header__account" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">
+        {% render 'icon', name: 'user' %}
+        <span class="header__label">{%- if customer -%}{{ 'customer.hello' | t: name: customer.first_name }}{%- else -%}{{ 'customer.login' | t }}{%- endif -%}</span>
+      </a>
+      <a class="icon-btn header__cart" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Principal">
+    <ul class="wrap nav__list">
+      {%- for link in menu.links -%}
+        <li class="nav__item{% if link.links.size > 0 %} has-mega{% endif %}">
+          <a class="nav__link{% if link.active %} is-active{% endif %}" href="{{ link.url }}">{{ link.title }}{% if link.links.size > 0 %} {% render 'icon', name: 'chevron-down', size: 16 %}{% endif %}</a>
+          {%- if link.links.size > 0 -%}
+            <div class="mega">
+              <div class="wrap mega__inner">
+                <div class="mega__cols">
+                  {%- for child in link.links -%}
+                    <div class="mega__col">
+                      <a class="mega__title" href="{{ child.url }}">{{ child.title }}</a>
+                      {%- if child.links.size > 0 -%}<ul>{%- for g in child.links -%}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{%- endfor -%}</ul>{%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.menu_item == link.title -%}
+                    <a class="mega__promo" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+                      {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.heading }}{%- else -%}<img src="{{ block.settings.fallback | asset_url }}" alt="" loading="lazy">{%- endif -%}
+                      <span><b>{{ block.settings.heading }}</b>{{ block.settings.text }}</span>
+                    </a>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</header>
+{% schema %}
+{"name":"Cabeçalho","class":"section-header","settings":[
+ {"type":"link_list","id":"menu","label":"Menu","default":"main-menu"}],
+"blocks":[{"type":"promo","name":"Destaque do mega menu","settings":[
+ {"type":"text","id":"menu_item","label":"Item do menu (título exato)","default":"Livros"},
+ {"type":"image_picker","id":"image","label":"Imagem"},
+ {"type":"text","id":"fallback","label":"Imagem padrão (asset)","default":"tn-banner-promo-devocionais.jpg"},
+ {"type":"text","id":"heading","label":"Título","default":"Devocionais para todos os dias"},
+ {"type":"text","id":"text","label":"Texto","default":"Comece o dia com a Palavra"},
+ {"type":"url","id":"link","label":"Link"}]}]}
+{% endschema %}

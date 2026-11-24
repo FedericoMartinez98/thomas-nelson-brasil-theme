@@ -1,0 +1,43 @@
+{%- paginate search.results by 24 -%}
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <div class="search-hero">
+      <h1 class="h1">{{ 'search.title' | t }}</h1>
+      {% render 'search-form', terms: search.terms, size: 'lg', id: 'page' %}
+      {%- if search.performed -%}
+        <p class="muted">{%- if search.results_count > 0 -%}{{ 'search.results_for' | t: count: search.results_count, terms: search.terms }}{%- else -%}{{ 'search.no_results' | t: terms: search.terms }}{%- endif -%}</p>
+      {%- endif -%}
+    </div>
+    {%- if search.performed and search.results_count > 0 -%}
+      <div class="plp">
+        <aside class="plp__side" id="filters" data-filters>
+          <div class="plp__side-head"><b>{{ 'collections.filters' | t }}</b><button class="icon-btn" type="button" data-filters-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button></div>
+          {% render 'facets', results: search %}
+        </aside>
+        <div class="plp__main">
+          <div class="toolbar"><button class="btn btn--ghost btn--sm toolbar__filter" type="button" data-filters-open>{% render 'icon', name: 'filter', size: 16 %} {{ 'collections.filter' | t }}</button></div>
+          {% render 'active-filters', results: search %}
+          <div class="grid grid--4">
+            {%- for item in search.results -%}
+              {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}
+              {%- else -%}<a class="search-page" href="{{ item.url }}"><b>{{ item.title }}</b><span class="muted">{{ item.content | strip_html | truncatewords: 18 }}</span></a>{%- endif -%}
+            {%- endfor -%}
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="search-empty">
+        <p class="muted">{{ 'search.try' | t }}</p>
+        <div class="chips chips--center">
+          {%- for link in linklists[section.settings.menu].links -%}<a class="chip" href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endpaginate -%}
+{% schema %}
+{"name":"Resultados de busca","settings":[{"type":"link_list","id":"menu","label":"Sugestões (menu)","default":"main-menu"}]}
+{% endschema %}

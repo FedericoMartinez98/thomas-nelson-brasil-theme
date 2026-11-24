@@ -1,0 +1,23 @@
+<section class="trust">
+  <div class="wrap trust__list">
+    {%- for block in section.blocks -%}
+      <div class="trust__item" {{ block.shopify_attributes }}>
+        <span class="trust__icon">{% render 'icon', name: block.settings.icon, size: 26 %}</span>
+        <div><b>{{ block.settings.title }}</b><span>{{ block.settings.text }}</span></div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{"name":"Selos de confiança","settings":[],
+"blocks":[{"type":"item","name":"Selo","settings":[
+ {"type":"select","id":"icon","label":"Ícone","options":[{"value":"truck","label":"Caminhão"},{"value":"card","label":"Cartão"},{"value":"pix","label":"Pix"},{"value":"shield","label":"Escudo"},{"value":"refresh","label":"Trocas"},{"value":"gift","label":"Presente"},{"value":"tablet","label":"E-book"},{"value":"headphones","label":"Audiolivro"}],"default":"truck"},
+ {"type":"text","id":"title","label":"Título","default":"Frete grátis"},
+ {"type":"text","id":"text","label":"Texto","default":"Acima de R$ 199"}]}],
+"max_blocks":5,
+"presets":[{"name":"Selos de confiança","blocks":[
+ {"type":"item","settings":{"icon":"truck","title":"Frete grátis","text":"Em compras acima de R$ 199"}},
+ {"type":"item","settings":{"icon":"card","title":"Até 6x sem juros","text":"Em todos os cartões"}},
+ {"type":"item","settings":{"icon":"pix","title":"5% OFF no Pix","text":"Aprovação imediata"}},
+ {"type":"item","settings":{"icon":"shield","title":"Compra segura","text":"Seus dados protegidos"}}]}]}
+{% endschema %}

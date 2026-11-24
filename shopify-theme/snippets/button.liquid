@@ -1,0 +1,4 @@
+{%- comment -%} Usage: {% render 'button', label: '', link: '', style: 'primary|ghost|light', icon: '' %} {%- endcomment -%}
+{%- if label != blank -%}
+  <a class="btn btn--{{ style | default: 'primary' }}" href="{{ link | default: '#' }}">{{ label }}{% if icon != blank %} {% render 'icon', name: icon, size: 18 %}{% endif %}</a>
+{%- endif -%}

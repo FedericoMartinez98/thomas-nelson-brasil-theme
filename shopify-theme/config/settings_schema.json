@@ -1,0 +1,62 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "TN Brasil Redesign",
+    "theme_version": "1.0.0",
+    "theme_author": "Find Be Tech",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      { "type": "color", "id": "color_bg", "label": "Fundo", "default": "#fbf8f3" },
+      { "type": "color", "id": "color_surface", "label": "Superfície (cards)", "default": "#ffffff" },
+      { "type": "color", "id": "color_ink", "label": "Texto", "default": "#1b1f2a" },
+      { "type": "color", "id": "color_muted", "label": "Texto secundário", "default": "#5f6673" },
+      { "type": "color", "id": "color_line", "label": "Bordas", "default": "#e6e0d6" },
+      { "type": "color", "id": "color_brand", "label": "Marca (azul)", "default": "#0b3a75" },
+      { "type": "color", "id": "color_brand_soft", "label": "Marca suave", "default": "#e9eff8" },
+      { "type": "color", "id": "color_accent", "label": "Destaque (dourado)", "default": "#c08a2e" },
+      { "type": "color", "id": "color_sale", "label": "Oferta", "default": "#b3261e" },
+      { "type": "color", "id": "color_success", "label": "Sucesso", "default": "#1f7a4d" }
+    ]
+  },
+  {
+    "name": "Marca",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "range", "id": "logo_width", "label": "Largura do logo", "min": 120, "max": 320, "step": 10, "unit": "px", "default": 220 },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" }
+    ]
+  },
+  {
+    "name": "Preços e pagamento",
+    "settings": [
+      { "type": "range", "id": "installments", "label": "Parcelas sem juros", "min": 1, "max": 12, "step": 1, "default": 6 },
+      { "type": "number", "id": "installment_min", "label": "Parcela mínima (R$)", "default": 10 },
+      { "type": "range", "id": "pix_discount", "label": "Desconto no Pix (%)", "min": 0, "max": 20, "step": 1, "default": 5 },
+      { "type": "number", "id": "free_shipping_threshold", "label": "Frete grátis a partir de (R$)", "default": 199 }
+    ]
+  },
+  {
+    "name": "Cards de produto",
+    "settings": [
+      { "type": "checkbox", "id": "card_show_vendor", "label": "Mostrar autor", "default": true },
+      { "type": "checkbox", "id": "card_show_installments", "label": "Mostrar parcelamento", "default": true },
+      { "type": "checkbox", "id": "card_quick_add", "label": "Botão de compra rápida", "default": true },
+      { "type": "text", "id": "tag_new", "label": "Tag que marca lançamento", "default": "lancamento" },
+      { "type": "text", "id": "tag_exclusive", "label": "Tag que marca exclusivo", "default": "exclusivo" }
+    ]
+  },
+  {
+    "name": "Redes sociais",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram", "default": "https://www.instagram.com/thomasnelsonbrasil" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook", "default": "https://www.facebook.com/thomasnelsonbrasil" },
+      { "type": "text", "id": "social_youtube", "label": "YouTube", "default": "https://www.youtube.com/@thomasnelsonbrasil" },
+      { "type": "text", "id": "social_spotify", "label": "Spotify" },
+      { "type": "text", "id": "whatsapp", "label": "WhatsApp (link)" }
+    ]
+  }
+]

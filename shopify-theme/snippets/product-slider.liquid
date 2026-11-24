@@ -1,0 +1,12 @@
+{%- comment -%} Horizontal scroll-snap row. Usage: {% render 'product-slider', products: collection.products, limit: 12 %} {%- endcomment -%}
+<div class="slider" data-slider>
+  <button class="slider__btn slider__btn--prev" type="button" data-slider-prev aria-label="{{ 'accessibility.scroll_left' | t }}">{% render 'icon', name: 'chevron-left' %}</button>
+  <div class="slider__track" data-slider-track>
+    {%- for product in products limit: limit -%}
+      <div class="slider__item">{% render 'product-card', product: product %}</div>
+    {%- else -%}
+      <p class="muted">Selecione uma coleção no editor de tema.</p>
+    {%- endfor -%}
+  </div>
+  <button class="slider__btn slider__btn--next" type="button" data-slider-next aria-label="{{ 'accessibility.scroll_right' | t }}">{% render 'icon', name: 'chevron-right' %}</button>
+</div>

@@ -1,0 +1,27 @@
+{
+  "current": {
+    "color_bg": "#fbf8f3",
+    "color_surface": "#ffffff",
+    "color_ink": "#1b1f2a",
+    "color_muted": "#5f6673",
+    "color_line": "#e6e0d6",
+    "color_brand": "#0b3a75",
+    "color_brand_soft": "#e9eff8",
+    "color_accent": "#c08a2e",
+    "color_sale": "#b3261e",
+    "color_success": "#1f7a4d",
+    "logo_width": 220,
+    "installments": 6,
+    "installment_min": 10,
+    "pix_discount": 5,
+    "free_shipping_threshold": 199,
+    "card_show_vendor": true,
+    "card_show_installments": true,
+    "card_quick_add": true,
+    "tag_new": "lancamento",
+    "tag_exclusive": "exclusivo",
+    "social_instagram": "https://www.instagram.com/thomasnelsonbrasil",
+    "social_facebook": "https://www.facebook.com/thomasnelsonbrasil",
+    "social_youtube": "https://www.youtube.com/@thomasnelsonbrasil"
+  }
+}

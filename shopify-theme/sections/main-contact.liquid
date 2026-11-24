@@ -1,0 +1,31 @@
+<section class="section section--tight">
+  <div class="wrap">
+    {% render 'breadcrumbs' %}
+    <div class="contact">
+      <div>
+        <h1 class="h1">{{ page.title }}</h1>
+        <div class="rte">{{ page.content }}</div>
+        <ul class="contact__info">
+          <li>{% render 'icon', name: 'mail', size: 20 %} <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+          {%- if section.settings.whatsapp != blank -%}<li>{% render 'icon', name: 'whatsapp', size: 20 %} {{ section.settings.whatsapp }}</li>{%- endif -%}
+          <li>{% render 'icon', name: 'clock', size: 20 %} {{ section.settings.hours }}</li>
+        </ul>
+      </div>
+      {%- form 'contact', class: 'form card-box' -%}
+        {%- if form.posted_successfully? -%}<p class="form-success">{% render 'icon', name: 'check', size: 18 %} {{ 'contact.success' | t }}</p>{%- endif -%}
+        {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+        <label>{{ 'contact.name' | t }}<input type="text" name="contact[name]" required></label>
+        <label>{{ 'contact.email' | t }}<input type="email" name="contact[email]" required></label>
+        <label>{{ 'contact.phone' | t }}<input type="tel" name="contact[phone]"></label>
+        <label>{{ 'contact.message' | t }}<textarea name="contact[body]" rows="5" required></textarea></label>
+        <button class="btn btn--primary btn--block" type="submit">{{ 'contact.send' | t }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Contato","settings":[
+ {"type":"text","id":"email","label":"E-mail","default":"sac@thomasnelson.com.br"},
+ {"type":"text","id":"whatsapp","label":"WhatsApp"},
+ {"type":"text","id":"hours","label":"Horário","default":"Segunda a sexta, 9h às 18h"}]}
+{% endschema %}

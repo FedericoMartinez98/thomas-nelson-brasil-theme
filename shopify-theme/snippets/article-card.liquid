@@ -1,0 +1,10 @@
+{%- comment -%} Usage: {% render 'article-card', article: article %} {%- endcomment -%}
+<article class="post">
+  <a class="post__media" href="{{ article.url }}">
+    {%- if article.image -%}{{ article.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: article.title }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
+  </a>
+  <p class="eyebrow">{{ article.published_at | date: '%d/%m/%Y' }}{% if article.tags.size > 0 %} · {{ article.tags.first }}{% endif %}</p>
+  <h3 class="post__title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+  <p class="muted">{{ article.excerpt_or_content | strip_html | truncatewords: 22 }}</p>
+  <a class="link-arrow" href="{{ article.url }}">{{ 'blog.read_more' | t }} {% render 'icon', name: 'arrow-right', size: 16 %}</a>
+</article>

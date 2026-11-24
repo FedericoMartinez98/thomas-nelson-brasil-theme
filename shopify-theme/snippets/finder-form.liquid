@@ -1,0 +1,19 @@
+{%- comment -%}
+  Bible finder. Usage: {% render 'finder-form', base_url: collection.url, button: '' %}
+  Redirects to /collections/<handle>/<tag>+<tag>. Tag Bibles: nvi|acf|ntlh|a21, letra-grande|letra-gigante, estudo|devocional|journaling, capa-dura|couro-soft|brochura.
+{%- endcomment -%}
+<form class="finder-form" data-finder data-base="{{ base_url | default: '/collections/biblia' }}">
+  <label>Tradução
+    <select name="traducao"><option value="">Tanto faz</option><option value="nvi">NVI</option><option value="acf">ACF</option><option value="ntlh">NTLH</option><option value="a21">A21</option></select>
+  </label>
+  <label>Para que vai usar?
+    <select name="uso"><option value="">Leitura diária</option><option value="estudo">Estudo aprofundado</option><option value="journaling">Bible journaling</option><option value="devocional">Devocional</option></select>
+  </label>
+  <label>Tamanho da letra
+    <select name="letra"><option value="">Tradicional</option><option value="letra-grande">Grande</option><option value="letra-gigante">Gigante</option></select>
+  </label>
+  <label>Capa
+    <select name="capa"><option value="">Qualquer</option><option value="capa-dura">Capa dura</option><option value="couro-soft">Couro soft</option><option value="brochura">Brochura</option></select>
+  </label>
+  <button class="btn btn--accent btn--block" type="submit">{{ button | default: 'Ver Bíblias para mim' }} {% render 'icon', name: 'arrow-right', size: 18 %}</button>
+</form>
