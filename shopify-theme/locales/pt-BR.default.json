@@ -77,8 +77,8 @@
     "remove": "Remover",
     "note": "Observações do pedido",
     "update": "Atualizar",
-    "free_shipping_left": "Faltam {{ amount }} para ganhar <b>frete grátis</b>",
-    "free_shipping_done": "Você ganhou <b>frete grátis</b>!",
+    "free_shipping_left_html": "Faltam {{ amount }} para ganhar <b>frete grátis</b>",
+    "free_shipping_done_html": "Você ganhou <b>frete grátis</b>!",
     "coupon": "Cupons de desconto são aplicados no checkout."
   },
   "not_found": {
